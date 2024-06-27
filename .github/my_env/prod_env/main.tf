@@ -19,7 +19,7 @@ data "aws_subnet" "first" {
   id = element(data.aws_subnets.default.ids, 0)
 }
 
-resource "aws_security_group" "strapi_sg" {
+resource "aws_security_group" "app_sg" {
   vpc_id = data.aws_vpc.default.id
 
   ingress {
@@ -48,7 +48,7 @@ resource "aws_security_group" "strapi_sg" {
   }
 }
 
-resource "aws_instance" "vyank_strapi_docker" {
+resource "aws_instance" "vyank_app" {
   ami                    = "ami-0705384c0b33c194c"
   instance_type          = "t3.medium"
   subnet_id              = data.aws_subnet.first.id
@@ -58,6 +58,6 @@ resource "aws_instance" "vyank_strapi_docker" {
   user_data = file("user_data.sh")
 
   tags = {
-    Name = "vyank-strapi-docker"
+    Name = "vyank-app"
   }
 }
