@@ -4,7 +4,7 @@ name: Deploy to Production (terraform)
 on:
   push:
     branches:
-      - mainprod_strap
+      - main
 
 jobs:
   terraform:
